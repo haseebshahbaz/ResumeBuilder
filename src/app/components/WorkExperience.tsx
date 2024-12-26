@@ -1,21 +1,28 @@
-const WorkExperience = () => {
-    return (
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Work Experience</h2>
-        <div>
-          <h3 className="text-xl font-medium">Software Developer</h3>
-          <p>Tech Solutions Inc.</p>
-          <p className="mb-2">June 2022 - Present</p>
-          <ul className="list-disc pl-5">
-            <li>Developed and maintained web applications using React and TypeScript</li>
-            <li>Collaborated with cross-functional teams to deliver high-quality software solutions</li>
-            <li>Implemented responsive designs and ensured cross-browser compatibility</li>
-          </ul>
+interface WorkExperienceProps {
+  data: {
+    jobTitle: string
+    company: string
+    startDate: string
+    endDate: string
+    responsibilities: string
+  }[]
+}
+
+const WorkExperience: React.FC<WorkExperienceProps> = ({ data }) => {
+  return (
+    <section>
+      <h2 className="text-2xl font-semibold mb-4">Work Experience</h2>
+      {data.map((experience, index) => (
+        <div key={index} className="mb-6">
+          <h3 className="text-xl font-medium">{experience.jobTitle}</h3>
+          <p>{experience.company}</p>
+          <p className="mb-2">{experience.startDate} - {experience.endDate}</p>
+          <p>{experience.responsibilities}</p>
         </div>
-      </section>
-    )
-  }
-  
-  export default WorkExperience
-  
-  
+      ))}
+    </section>
+  )
+}
+
+export default WorkExperience
+
